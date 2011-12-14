@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "fuzzy_search/version"
 
 Gem::Specification.new do |s|
-  s.name        = "Fuzzy Search"
+  s.name        = "fuzzy_search"
   s.version     = FuzzySearch::VERSION
   s.authors     = ["Alexandre da Silva"]
   s.email       = ["lexrupy@gmail.com"]
