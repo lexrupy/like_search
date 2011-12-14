@@ -37,7 +37,12 @@ module FuzzySearch
     private
 
     def format_search_sql
-      FuzzySearch::DB[current_db_adapter].gsub(/\{field\}/, fuzzy_search_attribute.to_s)
+      if FuzzySearch::DB[current_db_adapter].nil?
+        query_string = DB.default
+      else
+        query_string = FuzzySearch::DB[current_db_adapter]
+      end
+      query_string.gsub(/\{field\}/, fuzzy_search_attribute.to_s)
     end
 
     def current_db_adapter
