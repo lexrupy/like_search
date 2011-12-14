@@ -8,6 +8,8 @@ module LikeSearch
   }
   DB.default = "{field} like ?"
 
+
+
   extend ActiveSupport::Concern
 
   module ClassMethods
@@ -28,9 +30,9 @@ module LikeSearch
       end
     end
 
-    def token_search(query)
+    def token_search(query, token_size=2)
       query.to_s.split.inject(scoped) do |current_scope, term|
-        term.size > 3 ? current_scope.search(term) : current_scope
+        term.size > token_size ? current_scope.search(term) : current_scope
       end
     end
 
