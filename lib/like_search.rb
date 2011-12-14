@@ -1,7 +1,7 @@
 # Current db connection through config
 # ActiveRecord::Base.connection_config[:adapter] => "mysql2"
 
-module FuzzySearch
+module LikeSearch
   DB = {
     :postgres => "{field} ilike ?",
     :sqlite => 'LOWER({field}) like LOWER(?)'
@@ -11,11 +11,11 @@ module FuzzySearch
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def has_fuzzy_search(attribute)
-      class_attribute :fuzzy_search_attribute
-      self.fuzzy_search_attribute = attribute
+    def has_like_search(attribute)
+      class_attribute :like_search_attribute
+      self.like_search_attribute = attribute
 
-      extend FuzzySearch::SearchMethods
+      extend LikeSearch::SearchMethods
     end
   end
 
@@ -28,7 +28,7 @@ module FuzzySearch
       end
     end
 
-    def fuzzy_search(query)
+    def token_search(query)
       query.to_s.split.inject(scoped) do |current_scope, term|
         term.size > 3 ? current_scope.search(term) : current_scope
       end
@@ -37,12 +37,12 @@ module FuzzySearch
     private
 
     def format_search_sql
-      if FuzzySearch::DB[current_db_adapter].nil?
+      if LikeSearch::DB[current_db_adapter].nil?
         query_string = DB.default
       else
-        query_string = FuzzySearch::DB[current_db_adapter]
+        query_string = LikeSearch::DB[current_db_adapter]
       end
-      query_string.gsub(/\{field\}/, fuzzy_search_attribute.to_s)
+      query_string.gsub(/\{field\}/, like_search_attribute.to_s)
     end
 
     def current_db_adapter
@@ -51,4 +51,4 @@ module FuzzySearch
   end
 end
 
-ActiveRecord::Base.send :include, FuzzySearch
+ActiveRecord::Base.send :include, LikeSearch

@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in fuzzy_search.gemspec
+# Specify your gem's dependencies in like_search.gemspec
 gemspec

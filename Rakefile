@@ -6,7 +6,7 @@ require 'rdoc/task'
 desc 'Default: run unit tests.'
 task :default => :test
 
-desc 'Test the fuzzy_search plugin.'
+desc 'Test the like_search plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.libs << 'test'
@@ -14,10 +14,10 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-desc 'Generate documentation for the fuzzy_search plugin.'
+desc 'Generate documentation for the like_search plugin.'
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'FuzzySearch'
+  rdoc.title    = 'LikeSearch'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')

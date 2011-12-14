@@ -1,2 +1,2 @@
 # Include hook code here
-require 'fuzzy_search'
+require 'like_search'

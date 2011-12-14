@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FuzzySearchTest < ActiveSupport::TestCase
+class LikeSearchTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
