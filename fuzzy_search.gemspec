@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = FuzzySearch::VERSION
   s.authors     = ["Alexandre da Silva"]
   s.email       = ["lexrupy@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/lexrupy/fuzzy_search"
   s.summary     = %q{Search ActiveRecord models with Like}
   s.description = %q{Search ActiveRecord models with like}
 
