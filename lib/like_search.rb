@@ -4,9 +4,9 @@
 module LikeSearch
   DB = {
     :postgres => "{field} ilike ?",
-    :sqlite => 'LOWER({field}) like LOWER(?)'
+    :mysql => "{field} like ?"
   }
-  DB.default = "{field} like ?"
+  DB.default = 'LOWER({field}) like LOWER(?)'
 
 
 
